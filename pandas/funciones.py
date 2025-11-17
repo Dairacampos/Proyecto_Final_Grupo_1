@@ -1,11 +1,12 @@
-def promedio(archivo,columna):
-    if columna in archivo:
-        try:
-            return archivo[columna].mean()
-        except TypeError:
-            print("La columna no es numérica.")
+def promedios(archivo, nombre_columna):
+    try:
+        df = pd.read_csv(archivo)
+        if nombre_columna in df.columns:
+            return df[nombre_columna].mean()
+        else:
+            print("Error al procesar la columna.")
             return None
-    else:
-        print("La columna no existe en el DataFrame.")
+    except Exception as e:
+        print("Error al procesar la columna")
         return None
     
