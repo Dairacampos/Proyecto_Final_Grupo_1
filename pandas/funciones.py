@@ -10,3 +10,13 @@ def promedios(archivo, nombre_columna):
         print("Error al procesar la columna")
         return None
     
+def desviacion(archivo, columna):
+    try:
+        ds = pd.read_csv(archivo)
+        if columna not in ds.columns:
+            return "Error al procesar la columna"
+        return ds[columna].std()
+    except FileNotFoundError:
+        return "Error al procesar la columna"
+    except Exception as e:
+        return f"Error al procesar la columna"
