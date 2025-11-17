@@ -20,3 +20,18 @@ def desviacion(archivo, columna):
         return "Error al procesar la columna"
     except Exception as e:
         return f"Error al procesar la columna"
+    
+
+def percentiles(archivo, nombre_columna):
+    try:
+        df = pd.read_csv(archivo)
+        if nombre_columna not in df.columns:
+            return 'Error al procesar la columna'
+        
+        est = df[nombre_columna].describe()
+        return f"Percentil 25: {est['25%']}, Percentil 50: {est['50%']}, Percentil 75: {est['75%']}"
+    
+    except FileNotFoundError:
+        return 'Error al procesar la columna'
+    except Exception as e:
+        return 'Error al procesar la columna'
